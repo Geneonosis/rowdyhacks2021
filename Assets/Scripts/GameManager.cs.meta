@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3fc39c04249aad446a42516ac00e50af
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - gameBoard: {instanceID: 0}
+  - boardSquare: {fileID: 3217158064074217739, guid: 771a248c9fdc5604996688e8b5c6a5ec,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
