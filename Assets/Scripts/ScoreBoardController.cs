@@ -17,16 +17,16 @@ public class ScoreBoardController : MonoBehaviour
     /// <summary>
     /// Human player score update function
     /// </summary>
-    public void updatePlayerXScore()
+    public void UpdatePlayerXScore()
     {
-        this.playerXScore.text = GameManager.Instance.getPlayerXPoints().ToString();
+        this.playerXScore.text = GameManager.Instance.GetPlayerXPoints().ToString();
     }
 
     /// <summary>
     /// Computer score update function
     /// </summary>
-    public void updatePlayerOScore()
+    public void UpdatePlayerOScore()
     {
-        this.playerOScroe.text = GameManager.Instance.getPlayerOPoints().ToString();
+        this.playerOScroe.text = GameManager.Instance.GetPlayerOPoints().ToString();
     }
 }

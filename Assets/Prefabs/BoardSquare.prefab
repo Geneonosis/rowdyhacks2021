@@ -124,7 +124,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7174659422746623610}
-        m_MethodName: onClickSquare
+        m_MethodName: OnClickSquare
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

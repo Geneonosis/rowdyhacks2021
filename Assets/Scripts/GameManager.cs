@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(_instance != null && _instance != this)
+        if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
         } else
@@ -93,8 +93,8 @@ public class GameManager : MonoBehaviour
             this.CacheBoardSquares(newBoardSquare);
         }
 
-        List<Button> findFavoredButton = allBoardSquareButtons.Where(button => button.gameObject.GetComponent<TickTackToeButtonController>().buttonIndex == 4).ToList();
-        favoredSquareButton = findFavoredButton[0];
+        favoredSquareButton = allBoardSquareButtons.Where(button => button.gameObject.GetComponent<TickTackToeButtonController>().buttonIndex.Equals(4)).FirstOrDefault();
+
     }
 
     /// <summary>
@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
             if (playerOCopy[i].Equals(0))
             {
                 playerOCopy[i] = 1;
-                bool result = checkForWinningStateRedo(playerOCopy);
+                bool result = anyWinningStatesForPlayer(playerOCopy);
                 if (result)
                 {
                     return (i, result);
@@ -150,31 +150,6 @@ public class GameManager : MonoBehaviour
         this.allBoardSquareButtons.Add(boardSquare.GetComponent<Button>());
     }
 
-    /// <summary>
-    /// returns the winning move if it finds one
-    /// </summary>
-    /// <param name="playerData"></param>
-    /// <returns></returns>
-    public bool checkForWinningStateRedo(int [] playerData)
-    {
-        //TODO: check all the squares that X is in
-        if (
-            playerData[0].Equals(1) && playerData[1].Equals(1) && playerData[2].Equals(1) ||
-            playerData[0].Equals(1) && playerData[4].Equals(1) && playerData[8].Equals(1) ||
-            playerData[3].Equals(1) && playerData[4].Equals(1) && playerData[5].Equals(1) ||
-            playerData[6].Equals(1) && playerData[7].Equals(1) && playerData[8].Equals(1) ||
-            playerData[0].Equals(1) && playerData[3].Equals(1) && playerData[6].Equals(1) ||
-            playerData[1].Equals(1) && playerData[4].Equals(1) && playerData[7].Equals(1) ||
-            playerData[2].Equals(1) && playerData[5].Equals(1) && playerData[8].Equals(1) ||
-            playerData[2].Equals(1) && playerData[4].Equals(1) && playerData[6].Equals(1)
-        )
-        {
-            return true;
-        }
-
-        return false;
-    }
-
     #endregion
 
     #region End Game Logic
@@ -182,7 +157,7 @@ public class GameManager : MonoBehaviour
     /// checks for a winning state between X and O
     /// </summary>
     /// <returns>tuple containing a boolean indicating that the game is over and a string indicating the player that won</returns>
-    public (bool, string) checkForWinningState()
+    public (bool, string) CheckForWinningState()
     {
         //TODO: check all the squares that X is in
         if(anyWinningStatesForPlayer(playerX))
@@ -190,7 +165,7 @@ public class GameManager : MonoBehaviour
             DisableAllButtons();
             Debug.Log("Player X won");
             this.xPoints++;
-            this.scoreBoardController.updatePlayerXScore();
+            this.scoreBoardController.UpdatePlayerXScore();
             return (true, "Player X");
         }
 
@@ -200,7 +175,7 @@ public class GameManager : MonoBehaviour
             DisableAllButtons();
             Debug.Log("Player O won");
             this.oPoints++;
-            this.scoreBoardController.updatePlayerOScore();
+            this.scoreBoardController.UpdatePlayerOScore();
             return (true, "Player O");
         }
 
@@ -239,7 +214,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Restart a game or make a new game
     /// </summary>
-    public void onClickRestart()
+    public void OnClickRestart()
     {
         this.moveCount = 0;
 
@@ -281,7 +256,7 @@ public class GameManager : MonoBehaviour
     /// get the points for the human player
     /// </summary>
     /// <returns></returns>
-    public int getPlayerXPoints()
+    public int GetPlayerXPoints()
     {
         return this.xPoints;
     }
@@ -290,7 +265,7 @@ public class GameManager : MonoBehaviour
     /// get the points for the computer player
     /// </summary>
     /// <returns></returns>
-    public int getPlayerOPoints()
+    public int GetPlayerOPoints()
     {
         return this.oPoints;
     }
